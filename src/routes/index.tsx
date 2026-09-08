@@ -41,6 +41,12 @@ const tiers = [
   { name: "The Panic Bundle", price: "€99", suffix: "one-time", features: ["1 Premium Dataset", "2 Hours of live debugging", "Priority scheduling"], cta: "Get the Bundle", href: "mailto:clinic@thesishub.lv?subject=Panic%20Bundle" },
 ];
 
+const steps = [
+  { icon: Database, title: "1. The Vault", text: "Download 10-year Baltic panels, ESG scores, and macro data, instantly formatted for your software." },
+  { icon: Terminal, title: "2. The R-Clinic", text: "Stuck on an error? Book a live debugging session. We fix heteroskedasticity, loops, and broken data frames." },
+  { icon: CheckCircle2, title: "3. The Thesis", text: "Stop fighting CSV files and spend your time actually writing your analysis and securing your grade." },
+];
+
 function Logo() {
   return <a href="#top" className="shrink-0 font-mono text-base font-bold text-foreground sm:text-lg">ThesisHub<span className="text-primary">_</span><span className="cursor-blink ml-0.5 inline-block h-4 w-0.5 bg-primary align-middle" /></a>;
 }
@@ -105,16 +111,15 @@ function Index() {
           <p className="mb-3 font-mono text-xs font-semibold uppercase text-primary">// Your shortest path to analysis</p>
           <h2 className="max-w-3xl text-3xl font-bold sm:text-5xl">Skip the scraping. Start the science.</h2>
           <div className="mt-12 grid gap-4 md:grid-cols-3">
-            {[
-              [Database, "1. The Vault", "Download 10-year Baltic panels, ESG scores, and macro data, instantly formatted for your software."],
-              [Terminal, "2. The R-Clinic", "Stuck on an error? Book a live debugging session. We fix heteroskedasticity, loops, and broken data frames."],
-              [CheckCircle2, "3. The Thesis", "Stop fighting CSV files and spend your time actually writing your analysis and securing your grade."],
-            ].map(([Icon, title, text]) => (
-              <Card key={title as string} className="card-glow glass-panel rounded-lg shadow-none">
-                <CardHeader><div className="mb-6 grid size-11 place-items-center rounded-md border border-primary/30 bg-primary/10 text-primary"><Icon className="size-5" /></div><CardTitle className="font-mono text-lg">{title as string}</CardTitle></CardHeader>
-                <CardContent className="text-sm leading-6 text-muted-foreground">{text as string}</CardContent>
-              </Card>
-            ))}
+            {steps.map((step) => {
+              const StepIcon = step.icon;
+              return (
+                <Card key={step.title} className="card-glow glass-panel rounded-lg shadow-none">
+                  <CardHeader><div className="mb-6 grid size-11 place-items-center rounded-md border border-primary/30 bg-primary/10 text-primary"><StepIcon className="size-5" /></div><CardTitle className="font-mono text-lg">{step.title}</CardTitle></CardHeader>
+                  <CardContent className="text-sm leading-6 text-muted-foreground">{step.text}</CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
